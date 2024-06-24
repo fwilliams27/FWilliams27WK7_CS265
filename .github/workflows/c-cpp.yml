@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y g++
+
+    - name: Compile the program
+      run: g++ -fdiagnostics-color=always -g testProgUnorderedList_I.cpp unorderedSetTypeImp.cpp unorderedArrayListTypeImp.cpp arrayListTypeImp.cpp -o testProgUnorderedList_I
+
+    - name: Run the program
+      run: ./testProgUnorderedList_I
+
